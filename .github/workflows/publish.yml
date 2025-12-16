@@ -1,0 +1,102 @@
+name: Publish package to the Maven Central Repository
+on:
+  workflow_dispatch:
+  release:
+    types: [ published ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    env:
+      NEW_VERSION: ${{ github.event.release.tag_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          persist-credentials: true
+          ref: main
+
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Publish package
+        run: |
+          VERSION=${NEW_VERSION#v}
+          mvn versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
+          mvn --batch-mode deploy -P release -DskipTests
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_CENTRAL_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+  create-version-bump-pr:
+    runs-on: ubuntu-24.04
+    needs: publish
+    env:
+      NEW_VERSION: ${{ github.event.release.tag_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          persist-credentials: true
+          ref: main
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Show current project version
+        run: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+
+      - name: Set new Maven version
+        run: |
+          echo "Setting Maven version to $NEW_VERSION"
+          # Remove 'v' prefix if present
+          VERSION=${NEW_VERSION#v}
+          echo "Original tag: $NEW_VERSION"
+          echo "Setting version to: $VERSION"
+          mvn versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
+
+      - name: Prepare commit (only if there are changes)
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          # if no staged changes, mark committed=false and exit
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "committed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          git commit -m "ci: bump version to $NEW_VERSION"
+          echo "committed=true" >> $GITHUB_OUTPUT
+
+      - name: Create pull request with changes
+        if: steps.commit.outputs.committed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: bump/version-${{ env.NEW_VERSION }}
+          base: main
+          title: "Bump version to ${{ env.NEW_VERSION }}"
+          commit-message: "ci: bump version to ${{ env.NEW_VERSION }}"
+          body: |
+            This PR bumps the Maven project version to ${{ env.NEW_VERSION }}.
+            Generated automatically by GitHub Actions.
