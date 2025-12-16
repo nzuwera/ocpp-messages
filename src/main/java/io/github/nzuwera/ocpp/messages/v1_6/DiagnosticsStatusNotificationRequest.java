@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nzuwera.ocpp.messages.Response;
+import io.github.nzuwera.ocpp.messages.Request;
 
 
 /**
- * ClearCacheResponse
+ * DiagnosticsStatusNotificationRequest
  * <p>
  * 
  * 
@@ -23,7 +23,7 @@ import io.github.nzuwera.ocpp.messages.Response;
     "status"
 })
 @Generated("jsonschema2pojo")
-public class ClearCacheResponse extends Response {
+public class DiagnosticsStatusNotificationRequest extends Request {
 
     /**
      * 
@@ -31,7 +31,7 @@ public class ClearCacheResponse extends Response {
      * 
      */
     @JsonProperty("status")
-    private ClearCacheResponse.Status status;
+    private DiagnosticsStatusNotificationRequest.Status status;
 
     /**
      * 
@@ -39,7 +39,7 @@ public class ClearCacheResponse extends Response {
      * 
      */
     @JsonProperty("status")
-    public ClearCacheResponse.Status getStatus() {
+    public DiagnosticsStatusNotificationRequest.Status getStatus() {
         return status;
     }
 
@@ -49,20 +49,22 @@ public class ClearCacheResponse extends Response {
      * 
      */
     @JsonProperty("status")
-    public void setStatus(ClearCacheResponse.Status status) {
+    public void setStatus(DiagnosticsStatusNotificationRequest.Status status) {
         this.status = status;
     }
 
     @Generated("jsonschema2pojo")
     public enum Status {
 
-        ACCEPTED("Accepted"),
-        REJECTED("Rejected");
+        IDLE("Idle"),
+        UPLOADED("Uploaded"),
+        UPLOAD_FAILED("UploadFailed"),
+        UPLOADING("Uploading");
         private final String value;
-        private final static Map<String, ClearCacheResponse.Status> CONSTANTS = new HashMap<String, ClearCacheResponse.Status>();
+        private final static Map<String, DiagnosticsStatusNotificationRequest.Status> CONSTANTS = new HashMap<String, DiagnosticsStatusNotificationRequest.Status>();
 
         static {
-            for (ClearCacheResponse.Status c: values()) {
+            for (DiagnosticsStatusNotificationRequest.Status c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -82,8 +84,8 @@ public class ClearCacheResponse extends Response {
         }
 
         @JsonCreator
-        public static ClearCacheResponse.Status fromValue(String value) {
-            ClearCacheResponse.Status constant = CONSTANTS.get(value);
+        public static DiagnosticsStatusNotificationRequest.Status fromValue(String value) {
+            DiagnosticsStatusNotificationRequest.Status constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

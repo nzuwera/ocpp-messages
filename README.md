@@ -27,7 +27,7 @@ A Java library of **type-safe OCPP message POJOs**, generated from the official 
 
 ## Why this library
 
-- **Type-safe message models** instead of hand-written DTOs.
+- **Type-safe message models** instead of handwritten DTOs.
 - **Schema-driven generation** for consistency and easier upgrades.
 - **Jackson-friendly** models (annotations ready for JSON mapping).
 - **Maven Central distribution** for easy consumption.
@@ -132,7 +132,7 @@ Use this when the schema set is missing a message (or you are updating/patching 
 
 The project uses **`jsonschema2pojo-maven-plugin`** via a Maven profile.
 
-Generate sources:
+**Step 1: Generate sources**
 ```bash
 mvn clean generate-sources -P generate-source
 ```
@@ -141,7 +141,49 @@ What to expect:
 - Java sources are generated under `src/main/java/`
 - Generated models include Jackson annotations for JSON mapping
 
-If you add or modify schemas, re-run generation and commit the resulting changes (schemas + generated Java) as a single coherent update.
+**Step 2: Add inheritance to generated classes**
+
+After generating the classes, run the `add_inheritance.sh` script to add proper inheritance:
+
+```bash
+# Make the script executable (first time only)
+chmod +x add_inheritance.sh
+
+# Run the script to add inheritance
+./add_inheritance.sh io.github.nzuwera.ocpp.messages.v1_6
+```
+
+**What the script does:**
+- Scans all Java files in the specified package
+- Identifies Request classes (files containing "Request" in JavaDoc, not ending with "Response")
+- Identifies Response classes (files ending with "Response" or containing "Response" in JavaDoc)
+- Adds `import io.github.nzuwera.ocpp.messages.Request;` or `Response;` import statements
+- Adds `extends Request` or `extends Response` to class declarations
+- Skips base classes (`Request.java`, `Response.java`) and helper/model classes
+- Shows colored output with summary statistics
+
+**Example output:**
+```
+Processing package: io.github.nzuwera.ocpp.messages.v1_6
+Source directory: src/main/java/io/github/nzuwera/ocpp/messages/v1_6
+
+Processing Request: Authorize.java
+  ✓ Added Request inheritance
+
+Processing Response: AuthorizeResponse.java
+  ✓ Added Response inheritance
+
+════════════════════════════════════════
+Summary:
+  Request classes updated:  28
+  Response classes updated: 28
+  Already extended:         0
+  Helper/model classes:     8
+════════════════════════════════════════
+Done! Modified 56 files.
+```
+
+If you add or modify schemas, re-run both generation steps and commit the resulting changes (schemas + generated Java) as a single coherent update.
 
 ### Build & Test
 ```bash

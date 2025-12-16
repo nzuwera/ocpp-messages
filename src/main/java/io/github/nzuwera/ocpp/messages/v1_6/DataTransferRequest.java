@@ -1,5 +1,7 @@
+
 package io.github.nzuwera.ocpp.messages.v1_6;
 
+import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -9,16 +11,23 @@ import io.github.nzuwera.ocpp.messages.Request;
 /**
  * DataTransferRequest
  * <p>
- *
- *
+ * 
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "vendorId",
-        "messageId",
-        "data"
+    "vendorId",
+    "messageId",
+    "data"
 })
-public class DataTransfer extends Request {
+@Generated("jsonschema2pojo")
+public class DataTransferRequest extends Request {
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("vendorId")
     private String vendorId;
     @JsonProperty("messageId")
@@ -26,11 +35,21 @@ public class DataTransfer extends Request {
     @JsonProperty("data")
     private String data;
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("vendorId")
     public String getVendorId() {
         return vendorId;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("vendorId")
     public void setVendorId(String vendorId) {
         this.vendorId = vendorId;

@@ -137,6 +137,7 @@
                                     <includeToString>false</includeToString>
                                     <annotationStyle>jackson2</annotationStyle>
                                     <outputDirectory>${basedir}/src/main/java</outputDirectory>
+                                    <useTitleAsClassname>true</useTitleAsClassname>
                                 </configuration>
                             </execution>
                         </executions>

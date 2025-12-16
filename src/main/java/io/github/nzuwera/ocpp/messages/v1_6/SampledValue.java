@@ -1,21 +1,33 @@
-package io.github.nzuwera.ocpp.messages.v1_6;
 
-import com.fasterxml.jackson.annotation.*;
+package io.github.nzuwera.ocpp.messages.v1_6;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "value",
-        "context",
-        "format",
-        "measurand",
-        "phase",
-        "location",
-        "unit"
+    "value",
+    "context",
+    "format",
+    "measurand",
+    "phase",
+    "location",
+    "unit"
 })
+@Generated("jsonschema2pojo")
 public class SampledValue {
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("value")
     private String value;
     @JsonProperty("context")
@@ -31,11 +43,21 @@ public class SampledValue {
     @JsonProperty("unit")
     private SampledValue.Unit unit;
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("value")
     public String getValue() {
         return value;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("value")
     public void setValue(String value) {
         this.value = value;
@@ -101,7 +123,7 @@ public class SampledValue {
         this.unit = unit;
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum Context {
 
         INTERRUPTION_BEGIN("Interruption.Begin"),
@@ -112,18 +134,27 @@ public class SampledValue {
         TRANSACTION_END("Transaction.End"),
         TRIGGER("Trigger"),
         OTHER("Other");
+        private final String value;
         private final static Map<String, SampledValue.Context> CONSTANTS = new HashMap<String, SampledValue.Context>();
 
         static {
-            for (SampledValue.Context c : values()) {
+            for (SampledValue.Context c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         Context(String value) {
             this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
         }
 
         @JsonCreator
@@ -136,6 +167,26 @@ public class SampledValue {
             }
         }
 
+    }
+
+    @Generated("jsonschema2pojo")
+    public enum Format {
+
+        RAW("Raw"),
+        SIGNED_DATA("SignedData");
+        private final String value;
+        private final static Map<String, SampledValue.Format> CONSTANTS = new HashMap<String, SampledValue.Format>();
+
+        static {
+            for (SampledValue.Format c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        Format(String value) {
+            this.value = value;
+        }
+
         @Override
         public String toString() {
             return this.value;
@@ -144,27 +195,6 @@ public class SampledValue {
         @JsonValue
         public String value() {
             return this.value;
-        }
-
-    }
-
-
-    public enum Format {
-
-        RAW("Raw"),
-        SIGNED_DATA("SignedData");
-        private final static Map<String, SampledValue.Format> CONSTANTS = new HashMap<String, SampledValue.Format>();
-
-        static {
-            for (SampledValue.Format c : values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private final String value;
-
-        Format(String value) {
-            this.value = value;
         }
 
         @JsonCreator
@@ -177,6 +207,29 @@ public class SampledValue {
             }
         }
 
+    }
+
+    @Generated("jsonschema2pojo")
+    public enum Location {
+
+        CABLE("Cable"),
+        EV("EV"),
+        INLET("Inlet"),
+        OUTLET("Outlet"),
+        BODY("Body");
+        private final String value;
+        private final static Map<String, SampledValue.Location> CONSTANTS = new HashMap<String, SampledValue.Location>();
+
+        static {
+            for (SampledValue.Location c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        Location(String value) {
+            this.value = value;
+        }
+
         @Override
         public String toString() {
             return this.value;
@@ -185,30 +238,6 @@ public class SampledValue {
         @JsonValue
         public String value() {
             return this.value;
-        }
-
-    }
-
-
-    public enum Location {
-
-        CABLE("Cable"),
-        EV("EV"),
-        INLET("Inlet"),
-        OUTLET("Outlet"),
-        BODY("Body");
-        private final static Map<String, SampledValue.Location> CONSTANTS = new HashMap<String, SampledValue.Location>();
-
-        static {
-            for (SampledValue.Location c : values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private final String value;
-
-        Location(String value) {
-            this.value = value;
         }
 
         @JsonCreator
@@ -221,19 +250,9 @@ public class SampledValue {
             }
         }
 
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        @JsonValue
-        public String value() {
-            return this.value;
-        }
-
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum Measurand {
 
         ENERGY_ACTIVE_EXPORT_REGISTER("Energy.Active.Export.Register"),
@@ -258,18 +277,27 @@ public class SampledValue {
         TEMPERATURE("Temperature"),
         SO_C("SoC"),
         RPM("RPM");
+        private final String value;
         private final static Map<String, SampledValue.Measurand> CONSTANTS = new HashMap<String, SampledValue.Measurand>();
 
         static {
-            for (SampledValue.Measurand c : values()) {
+            for (SampledValue.Measurand c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         Measurand(String value) {
             this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
         }
 
         @JsonCreator
@@ -282,19 +310,9 @@ public class SampledValue {
             }
         }
 
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        @JsonValue
-        public String value() {
-            return this.value;
-        }
-
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum Phase {
 
         L_1("L1"),
@@ -307,28 +325,17 @@ public class SampledValue {
         L_1_L_2("L1-L2"),
         L_2_L_3("L2-L3"),
         L_3_L_1("L3-L1");
+        private final String value;
         private final static Map<String, SampledValue.Phase> CONSTANTS = new HashMap<String, SampledValue.Phase>();
 
         static {
-            for (SampledValue.Phase c : values()) {
+            for (SampledValue.Phase c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         Phase(String value) {
             this.value = value;
-        }
-
-        @JsonCreator
-        public static SampledValue.Phase fromValue(String value) {
-            SampledValue.Phase constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
         }
 
         @Override
@@ -341,9 +348,19 @@ public class SampledValue {
             return this.value;
         }
 
+        @JsonCreator
+        public static SampledValue.Phase fromValue(String value) {
+            SampledValue.Phase constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum Unit {
 
         WH("Wh"),
@@ -363,28 +380,17 @@ public class SampledValue {
         CELSIUS("Celsius"),
         FAHRENHEIT("Fahrenheit"),
         PERCENT("Percent");
+        private final String value;
         private final static Map<String, SampledValue.Unit> CONSTANTS = new HashMap<String, SampledValue.Unit>();
 
         static {
-            for (SampledValue.Unit c : values()) {
+            for (SampledValue.Unit c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         Unit(String value) {
             this.value = value;
-        }
-
-        @JsonCreator
-        public static SampledValue.Unit fromValue(String value) {
-            SampledValue.Unit constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
         }
 
         @Override
@@ -395,6 +401,16 @@ public class SampledValue {
         @JsonValue
         public String value() {
             return this.value;
+        }
+
+        @JsonCreator
+        public static SampledValue.Unit fromValue(String value) {
+            SampledValue.Unit constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
         }
 
     }

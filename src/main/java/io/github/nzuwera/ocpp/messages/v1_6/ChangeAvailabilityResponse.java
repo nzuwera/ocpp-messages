@@ -1,64 +1,75 @@
-package io.github.nzuwera.ocpp.messages.v1_6;
 
-import com.fasterxml.jackson.annotation.*;
-import io.github.nzuwera.ocpp.messages.Response;
+package io.github.nzuwera.ocpp.messages.v1_6;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nzuwera.ocpp.messages.Response;
 
 
 /**
  * ChangeAvailabilityResponse
  * <p>
- *
- *
+ * 
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "status"
+    "status"
 })
+@Generated("jsonschema2pojo")
 public class ChangeAvailabilityResponse extends Response {
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("status")
     private ChangeAvailabilityResponse.Status status;
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("status")
     public ChangeAvailabilityResponse.Status getStatus() {
         return status;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("status")
     public void setStatus(ChangeAvailabilityResponse.Status status) {
         this.status = status;
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum Status {
 
         ACCEPTED("Accepted"),
         REJECTED("Rejected"),
         SCHEDULED("Scheduled");
+        private final String value;
         private final static Map<String, ChangeAvailabilityResponse.Status> CONSTANTS = new HashMap<String, ChangeAvailabilityResponse.Status>();
 
         static {
-            for (ChangeAvailabilityResponse.Status c : values()) {
+            for (ChangeAvailabilityResponse.Status c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         Status(String value) {
             this.value = value;
-        }
-
-        @JsonCreator
-        public static ChangeAvailabilityResponse.Status fromValue(String value) {
-            ChangeAvailabilityResponse.Status constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
         }
 
         @Override
@@ -69,6 +80,16 @@ public class ChangeAvailabilityResponse extends Response {
         @JsonValue
         public String value() {
             return this.value;
+        }
+
+        @JsonCreator
+        public static ChangeAvailabilityResponse.Status fromValue(String value) {
+            ChangeAvailabilityResponse.Status constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
         }
 
     }

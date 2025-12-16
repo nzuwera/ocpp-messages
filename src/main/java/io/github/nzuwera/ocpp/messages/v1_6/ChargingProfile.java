@@ -1,31 +1,58 @@
-package io.github.nzuwera.ocpp.messages.v1_6;
 
-import com.fasterxml.jackson.annotation.*;
+package io.github.nzuwera.ocpp.messages.v1_6;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "chargingProfileId",
-        "transactionId",
-        "stackLevel",
-        "chargingProfilePurpose",
-        "chargingProfileKind",
-        "recurrencyKind",
-        "validFrom",
-        "validTo",
-        "chargingSchedule"
+    "chargingProfileId",
+    "transactionId",
+    "stackLevel",
+    "chargingProfilePurpose",
+    "chargingProfileKind",
+    "recurrencyKind",
+    "validFrom",
+    "validTo",
+    "chargingSchedule"
 })
+@Generated("jsonschema2pojo")
 public class ChargingProfile {
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfileId")
     private Integer chargingProfileId;
     @JsonProperty("transactionId")
     private Integer transactionId;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("stackLevel")
     private Integer stackLevel;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfilePurpose")
     private ChargingProfile.ChargingProfilePurpose chargingProfilePurpose;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfileKind")
     private ChargingProfile.ChargingProfileKind chargingProfileKind;
     @JsonProperty("recurrencyKind")
@@ -34,14 +61,29 @@ public class ChargingProfile {
     private String validFrom;
     @JsonProperty("validTo")
     private String validTo;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingSchedule")
     private ChargingSchedule chargingSchedule;
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfileId")
     public Integer getChargingProfileId() {
         return chargingProfileId;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfileId")
     public void setChargingProfileId(Integer chargingProfileId) {
         this.chargingProfileId = chargingProfileId;
@@ -57,31 +99,61 @@ public class ChargingProfile {
         this.transactionId = transactionId;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("stackLevel")
     public Integer getStackLevel() {
         return stackLevel;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("stackLevel")
     public void setStackLevel(Integer stackLevel) {
         this.stackLevel = stackLevel;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfilePurpose")
     public ChargingProfile.ChargingProfilePurpose getChargingProfilePurpose() {
         return chargingProfilePurpose;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfilePurpose")
     public void setChargingProfilePurpose(ChargingProfile.ChargingProfilePurpose chargingProfilePurpose) {
         this.chargingProfilePurpose = chargingProfilePurpose;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfileKind")
     public ChargingProfile.ChargingProfileKind getChargingProfileKind() {
         return chargingProfileKind;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingProfileKind")
     public void setChargingProfileKind(ChargingProfile.ChargingProfileKind chargingProfileKind) {
         this.chargingProfileKind = chargingProfileKind;
@@ -117,34 +189,53 @@ public class ChargingProfile {
         this.validTo = validTo;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingSchedule")
     public ChargingSchedule getChargingSchedule() {
         return chargingSchedule;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargingSchedule")
     public void setChargingSchedule(ChargingSchedule chargingSchedule) {
         this.chargingSchedule = chargingSchedule;
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum ChargingProfileKind {
 
         ABSOLUTE("Absolute"),
         RECURRING("Recurring"),
         RELATIVE("Relative");
+        private final String value;
         private final static Map<String, ChargingProfile.ChargingProfileKind> CONSTANTS = new HashMap<String, ChargingProfile.ChargingProfileKind>();
 
         static {
-            for (ChargingProfile.ChargingProfileKind c : values()) {
+            for (ChargingProfile.ChargingProfileKind c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         ChargingProfileKind(String value) {
             this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        @JsonValue
+        public String value() {
+            return this.value;
         }
 
         @JsonCreator
@@ -157,6 +248,27 @@ public class ChargingProfile {
             }
         }
 
+    }
+
+    @Generated("jsonschema2pojo")
+    public enum ChargingProfilePurpose {
+
+        CHARGE_POINT_MAX_PROFILE("ChargePointMaxProfile"),
+        TX_DEFAULT_PROFILE("TxDefaultProfile"),
+        TX_PROFILE("TxProfile");
+        private final String value;
+        private final static Map<String, ChargingProfile.ChargingProfilePurpose> CONSTANTS = new HashMap<String, ChargingProfile.ChargingProfilePurpose>();
+
+        static {
+            for (ChargingProfile.ChargingProfilePurpose c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        ChargingProfilePurpose(String value) {
+            this.value = value;
+        }
+
         @Override
         public String toString() {
             return this.value;
@@ -165,28 +277,6 @@ public class ChargingProfile {
         @JsonValue
         public String value() {
             return this.value;
-        }
-
-    }
-
-
-    public enum ChargingProfilePurpose {
-
-        CHARGE_POINT_MAX_PROFILE("ChargePointMaxProfile"),
-        TX_DEFAULT_PROFILE("TxDefaultProfile"),
-        TX_PROFILE("TxProfile");
-        private final static Map<String, ChargingProfile.ChargingProfilePurpose> CONSTANTS = new HashMap<String, ChargingProfile.ChargingProfilePurpose>();
-
-        static {
-            for (ChargingProfile.ChargingProfilePurpose c : values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private final String value;
-
-        ChargingProfilePurpose(String value) {
-            this.value = value;
         }
 
         @JsonCreator
@@ -199,6 +289,26 @@ public class ChargingProfile {
             }
         }
 
+    }
+
+    @Generated("jsonschema2pojo")
+    public enum RecurrencyKind {
+
+        DAILY("Daily"),
+        WEEKLY("Weekly");
+        private final String value;
+        private final static Map<String, ChargingProfile.RecurrencyKind> CONSTANTS = new HashMap<String, ChargingProfile.RecurrencyKind>();
+
+        static {
+            for (ChargingProfile.RecurrencyKind c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        RecurrencyKind(String value) {
+            this.value = value;
+        }
+
         @Override
         public String toString() {
             return this.value;
@@ -207,27 +317,6 @@ public class ChargingProfile {
         @JsonValue
         public String value() {
             return this.value;
-        }
-
-    }
-
-
-    public enum RecurrencyKind {
-
-        DAILY("Daily"),
-        WEEKLY("Weekly");
-        private final static Map<String, ChargingProfile.RecurrencyKind> CONSTANTS = new HashMap<String, ChargingProfile.RecurrencyKind>();
-
-        static {
-            for (ChargingProfile.RecurrencyKind c : values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private final String value;
-
-        RecurrencyKind(String value) {
-            this.value = value;
         }
 
         @JsonCreator
@@ -238,16 +327,6 @@ public class ChargingProfile {
             } else {
                 return constant;
             }
-        }
-
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        @JsonValue
-        public String value() {
-            return this.value;
         }
 
     }

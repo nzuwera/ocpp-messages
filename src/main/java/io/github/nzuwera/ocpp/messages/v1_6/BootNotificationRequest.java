@@ -1,5 +1,7 @@
+
 package io.github.nzuwera.ocpp.messages.v1_6;
 
+import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -9,24 +11,36 @@ import io.github.nzuwera.ocpp.messages.Request;
 /**
  * BootNotificationRequest
  * <p>
- *
- *
+ * 
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "chargePointVendor",
-        "chargePointModel",
-        "chargePointSerialNumber",
-        "chargeBoxSerialNumber",
-        "firmwareVersion",
-        "iccid",
-        "imsi",
-        "meterType",
-        "meterSerialNumber"
+    "chargePointVendor",
+    "chargePointModel",
+    "chargePointSerialNumber",
+    "chargeBoxSerialNumber",
+    "firmwareVersion",
+    "iccid",
+    "imsi",
+    "meterType",
+    "meterSerialNumber"
 })
-public class BootNotification extends Request {
+@Generated("jsonschema2pojo")
+public class BootNotificationRequest extends Request {
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargePointVendor")
     private String chargePointVendor;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargePointModel")
     private String chargePointModel;
     @JsonProperty("chargePointSerialNumber")
@@ -44,21 +58,41 @@ public class BootNotification extends Request {
     @JsonProperty("meterSerialNumber")
     private String meterSerialNumber;
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargePointVendor")
     public String getChargePointVendor() {
         return chargePointVendor;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargePointVendor")
     public void setChargePointVendor(String chargePointVendor) {
         this.chargePointVendor = chargePointVendor;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargePointModel")
     public String getChargePointModel() {
         return chargePointModel;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("chargePointModel")
     public void setChargePointModel(String chargePointModel) {
         this.chargePointModel = chargePointModel;

@@ -1,37 +1,59 @@
-package io.github.nzuwera.ocpp.messages.v1_6;
 
-import com.fasterxml.jackson.annotation.*;
-import io.github.nzuwera.ocpp.messages.Request;
+package io.github.nzuwera.ocpp.messages.v1_6;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nzuwera.ocpp.messages.Request;
 
 
 /**
  * StatusNotificationRequest
  * <p>
- *
- *
+ * 
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "connectorId",
-        "errorCode",
-        "info",
-        "status",
-        "timestamp",
-        "vendorId",
-        "vendorErrorCode"
+    "connectorId",
+    "errorCode",
+    "info",
+    "status",
+    "timestamp",
+    "vendorId",
+    "vendorErrorCode"
 })
-public class StatusNotification extends Request {
+@Generated("jsonschema2pojo")
+public class StatusNotificationRequest extends Request {
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("connectorId")
     private Integer connectorId;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("errorCode")
-    private StatusNotification.ErrorCode errorCode;
+    private StatusNotificationRequest.ErrorCode errorCode;
     @JsonProperty("info")
     private String info;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("status")
-    private StatusNotification.Status status;
+    private StatusNotificationRequest.Status status;
     @JsonProperty("timestamp")
     private String timestamp;
     @JsonProperty("vendorId")
@@ -39,23 +61,43 @@ public class StatusNotification extends Request {
     @JsonProperty("vendorErrorCode")
     private String vendorErrorCode;
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("connectorId")
     public Integer getConnectorId() {
         return connectorId;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("connectorId")
     public void setConnectorId(Integer connectorId) {
         this.connectorId = connectorId;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("errorCode")
-    public StatusNotification.ErrorCode getErrorCode() {
+    public StatusNotificationRequest.ErrorCode getErrorCode() {
         return errorCode;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("errorCode")
-    public void setErrorCode(StatusNotification.ErrorCode errorCode) {
+    public void setErrorCode(StatusNotificationRequest.ErrorCode errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -69,13 +111,23 @@ public class StatusNotification extends Request {
         this.info = info;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("status")
-    public StatusNotification.Status getStatus() {
+    public StatusNotificationRequest.Status getStatus() {
         return status;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @JsonProperty("status")
-    public void setStatus(StatusNotification.Status status) {
+    public void setStatus(StatusNotificationRequest.Status status) {
         this.status = status;
     }
 
@@ -109,7 +161,7 @@ public class StatusNotification extends Request {
         this.vendorErrorCode = vendorErrorCode;
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum ErrorCode {
 
         CONNECTOR_LOCK_FAILURE("ConnectorLockFailure"),
@@ -128,28 +180,17 @@ public class StatusNotification extends Request {
         UNDER_VOLTAGE("UnderVoltage"),
         OVER_VOLTAGE("OverVoltage"),
         WEAK_SIGNAL("WeakSignal");
-        private final static Map<String, StatusNotification.ErrorCode> CONSTANTS = new HashMap<String, StatusNotification.ErrorCode>();
+        private final String value;
+        private final static Map<String, StatusNotificationRequest.ErrorCode> CONSTANTS = new HashMap<String, StatusNotificationRequest.ErrorCode>();
 
         static {
-            for (StatusNotification.ErrorCode c : values()) {
+            for (StatusNotificationRequest.ErrorCode c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         ErrorCode(String value) {
             this.value = value;
-        }
-
-        @JsonCreator
-        public static StatusNotification.ErrorCode fromValue(String value) {
-            StatusNotification.ErrorCode constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
         }
 
         @Override
@@ -162,9 +203,19 @@ public class StatusNotification extends Request {
             return this.value;
         }
 
+        @JsonCreator
+        public static StatusNotificationRequest.ErrorCode fromValue(String value) {
+            StatusNotificationRequest.ErrorCode constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum Status {
 
         AVAILABLE("Available"),
@@ -176,28 +227,17 @@ public class StatusNotification extends Request {
         RESERVED("Reserved"),
         UNAVAILABLE("Unavailable"),
         FAULTED("Faulted");
-        private final static Map<String, StatusNotification.Status> CONSTANTS = new HashMap<String, StatusNotification.Status>();
+        private final String value;
+        private final static Map<String, StatusNotificationRequest.Status> CONSTANTS = new HashMap<String, StatusNotificationRequest.Status>();
 
         static {
-            for (StatusNotification.Status c : values()) {
+            for (StatusNotificationRequest.Status c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         Status(String value) {
             this.value = value;
-        }
-
-        @JsonCreator
-        public static StatusNotification.Status fromValue(String value) {
-            StatusNotification.Status constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
         }
 
         @Override
@@ -208,6 +248,16 @@ public class StatusNotification extends Request {
         @JsonValue
         public String value() {
             return this.value;
+        }
+
+        @JsonCreator
+        public static StatusNotificationRequest.Status fromValue(String value) {
+            StatusNotificationRequest.Status constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
         }
 
     }

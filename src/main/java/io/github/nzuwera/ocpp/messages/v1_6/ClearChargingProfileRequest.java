@@ -1,33 +1,39 @@
-package io.github.nzuwera.ocpp.messages.v1_6;
 
-import com.fasterxml.jackson.annotation.*;
-import io.github.nzuwera.ocpp.messages.Request;
+package io.github.nzuwera.ocpp.messages.v1_6;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.processing.Generated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.nzuwera.ocpp.messages.Request;
 
 
 /**
  * ClearChargingProfileRequest
  * <p>
- *
- *
+ * 
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "id",
-        "connectorId",
-        "chargingProfilePurpose",
-        "stackLevel"
+    "id",
+    "connectorId",
+    "chargingProfilePurpose",
+    "stackLevel"
 })
-public class ClearChargingProfile extends Request {
+@Generated("jsonschema2pojo")
+public class ClearChargingProfileRequest extends Request {
 
     @JsonProperty("id")
     private Integer id;
     @JsonProperty("connectorId")
     private Integer connectorId;
     @JsonProperty("chargingProfilePurpose")
-    private ClearChargingProfile.ChargingProfilePurpose chargingProfilePurpose;
+    private ClearChargingProfileRequest.ChargingProfilePurpose chargingProfilePurpose;
     @JsonProperty("stackLevel")
     private Integer stackLevel;
 
@@ -52,12 +58,12 @@ public class ClearChargingProfile extends Request {
     }
 
     @JsonProperty("chargingProfilePurpose")
-    public ClearChargingProfile.ChargingProfilePurpose getChargingProfilePurpose() {
+    public ClearChargingProfileRequest.ChargingProfilePurpose getChargingProfilePurpose() {
         return chargingProfilePurpose;
     }
 
     @JsonProperty("chargingProfilePurpose")
-    public void setChargingProfilePurpose(ClearChargingProfile.ChargingProfilePurpose chargingProfilePurpose) {
+    public void setChargingProfilePurpose(ClearChargingProfileRequest.ChargingProfilePurpose chargingProfilePurpose) {
         this.chargingProfilePurpose = chargingProfilePurpose;
     }
 
@@ -71,34 +77,23 @@ public class ClearChargingProfile extends Request {
         this.stackLevel = stackLevel;
     }
 
-
+    @Generated("jsonschema2pojo")
     public enum ChargingProfilePurpose {
 
         CHARGE_POINT_MAX_PROFILE("ChargePointMaxProfile"),
         TX_DEFAULT_PROFILE("TxDefaultProfile"),
         TX_PROFILE("TxProfile");
-        private final static Map<String, ClearChargingProfile.ChargingProfilePurpose> CONSTANTS = new HashMap<String, ClearChargingProfile.ChargingProfilePurpose>();
+        private final String value;
+        private final static Map<String, ClearChargingProfileRequest.ChargingProfilePurpose> CONSTANTS = new HashMap<String, ClearChargingProfileRequest.ChargingProfilePurpose>();
 
         static {
-            for (ClearChargingProfile.ChargingProfilePurpose c : values()) {
+            for (ClearChargingProfileRequest.ChargingProfilePurpose c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        private final String value;
-
         ChargingProfilePurpose(String value) {
             this.value = value;
-        }
-
-        @JsonCreator
-        public static ClearChargingProfile.ChargingProfilePurpose fromValue(String value) {
-            ClearChargingProfile.ChargingProfilePurpose constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
         }
 
         @Override
@@ -109,6 +104,16 @@ public class ClearChargingProfile extends Request {
         @JsonValue
         public String value() {
             return this.value;
+        }
+
+        @JsonCreator
+        public static ClearChargingProfileRequest.ChargingProfilePurpose fromValue(String value) {
+            ClearChargingProfileRequest.ChargingProfilePurpose constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
         }
 
     }

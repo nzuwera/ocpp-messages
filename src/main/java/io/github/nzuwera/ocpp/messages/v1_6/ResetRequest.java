@@ -9,38 +9,38 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nzuwera.ocpp.messages.Response;
+import io.github.nzuwera.ocpp.messages.Request;
 
 
 /**
- * ClearCacheResponse
+ * ResetRequest
  * <p>
  * 
  * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "status"
+    "type"
 })
 @Generated("jsonschema2pojo")
-public class ClearCacheResponse extends Response {
+public class ResetRequest extends Request {
 
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("status")
-    private ClearCacheResponse.Status status;
+    @JsonProperty("type")
+    private ResetRequest.Type type;
 
     /**
      * 
      * (Required)
      * 
      */
-    @JsonProperty("status")
-    public ClearCacheResponse.Status getStatus() {
-        return status;
+    @JsonProperty("type")
+    public ResetRequest.Type getType() {
+        return type;
     }
 
     /**
@@ -48,26 +48,26 @@ public class ClearCacheResponse extends Response {
      * (Required)
      * 
      */
-    @JsonProperty("status")
-    public void setStatus(ClearCacheResponse.Status status) {
-        this.status = status;
+    @JsonProperty("type")
+    public void setType(ResetRequest.Type type) {
+        this.type = type;
     }
 
     @Generated("jsonschema2pojo")
-    public enum Status {
+    public enum Type {
 
-        ACCEPTED("Accepted"),
-        REJECTED("Rejected");
+        HARD("Hard"),
+        SOFT("Soft");
         private final String value;
-        private final static Map<String, ClearCacheResponse.Status> CONSTANTS = new HashMap<String, ClearCacheResponse.Status>();
+        private final static Map<String, ResetRequest.Type> CONSTANTS = new HashMap<String, ResetRequest.Type>();
 
         static {
-            for (ClearCacheResponse.Status c: values()) {
+            for (ResetRequest.Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
 
-        Status(String value) {
+        Type(String value) {
             this.value = value;
         }
 
@@ -82,8 +82,8 @@ public class ClearCacheResponse extends Response {
         }
 
         @JsonCreator
-        public static ClearCacheResponse.Status fromValue(String value) {
-            ClearCacheResponse.Status constant = CONSTANTS.get(value);
+        public static ResetRequest.Type fromValue(String value) {
+            ResetRequest.Type constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

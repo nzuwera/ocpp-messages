@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.nzuwera.ocpp.messages.Response;
+import io.github.nzuwera.ocpp.messages.Request;
 
 
 /**
- * ClearCacheResponse
+ * FirmwareStatusNotificationRequest
  * <p>
  * 
  * 
@@ -23,7 +23,7 @@ import io.github.nzuwera.ocpp.messages.Response;
     "status"
 })
 @Generated("jsonschema2pojo")
-public class ClearCacheResponse extends Response {
+public class FirmwareStatusNotificationRequest extends Request {
 
     /**
      * 
@@ -31,7 +31,7 @@ public class ClearCacheResponse extends Response {
      * 
      */
     @JsonProperty("status")
-    private ClearCacheResponse.Status status;
+    private FirmwareStatusNotificationRequest.Status status;
 
     /**
      * 
@@ -39,7 +39,7 @@ public class ClearCacheResponse extends Response {
      * 
      */
     @JsonProperty("status")
-    public ClearCacheResponse.Status getStatus() {
+    public FirmwareStatusNotificationRequest.Status getStatus() {
         return status;
     }
 
@@ -49,20 +49,25 @@ public class ClearCacheResponse extends Response {
      * 
      */
     @JsonProperty("status")
-    public void setStatus(ClearCacheResponse.Status status) {
+    public void setStatus(FirmwareStatusNotificationRequest.Status status) {
         this.status = status;
     }
 
     @Generated("jsonschema2pojo")
     public enum Status {
 
-        ACCEPTED("Accepted"),
-        REJECTED("Rejected");
+        DOWNLOADED("Downloaded"),
+        DOWNLOAD_FAILED("DownloadFailed"),
+        DOWNLOADING("Downloading"),
+        IDLE("Idle"),
+        INSTALLATION_FAILED("InstallationFailed"),
+        INSTALLING("Installing"),
+        INSTALLED("Installed");
         private final String value;
-        private final static Map<String, ClearCacheResponse.Status> CONSTANTS = new HashMap<String, ClearCacheResponse.Status>();
+        private final static Map<String, FirmwareStatusNotificationRequest.Status> CONSTANTS = new HashMap<String, FirmwareStatusNotificationRequest.Status>();
 
         static {
-            for (ClearCacheResponse.Status c: values()) {
+            for (FirmwareStatusNotificationRequest.Status c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -82,8 +87,8 @@ public class ClearCacheResponse extends Response {
         }
 
         @JsonCreator
-        public static ClearCacheResponse.Status fromValue(String value) {
-            ClearCacheResponse.Status constant = CONSTANTS.get(value);
+        public static FirmwareStatusNotificationRequest.Status fromValue(String value) {
+            FirmwareStatusNotificationRequest.Status constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

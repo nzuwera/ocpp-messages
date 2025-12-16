@@ -1,25 +1,27 @@
+
 package io.github.nzuwera.ocpp.messages.v1_6;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.github.nzuwera.ocpp.messages.Response;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * GetConfigurationResponse
  * <p>
- *
- *
+ * 
+ * 
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "configurationKey",
-        "unknownKey"
+    "configurationKey",
+    "unknownKey"
 })
+@Generated("jsonschema2pojo")
 public class GetConfigurationResponse extends Response {
 
     @JsonProperty("configurationKey")
