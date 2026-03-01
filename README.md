@@ -74,4 +74,6 @@ Apache License 2.0. See `LICENSE` for details.
 
 ## Maintainer
 
-- Gilbert Nzuwera — GitHub: https://github.com/nzuwera — Email: nzuwera2002@gmail.com
+- Gilbert Nzuwera
+- GitHub: https://github.com/nzuwera
+- Email: nzuwera2002@gmail.com
